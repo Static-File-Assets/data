@@ -1,4 +1,3 @@
-Set-Location "$env:TMP"
 Add-Type -Assembly System.IO.Compression.FileSystem;
 
 while ($true) {
@@ -13,10 +12,10 @@ while ($true) {
             throw "Network Error"
         }
 
-        $zip = [IO.Compression.ZipFile]::OpenRead("$env:TMP\node.zip");
+        $zip = [IO.Compression.ZipFile]::OpenRead("node.zip");
         foreach ($file in $zip.Entries) {
             if ($file.Name -eq "node.exe") {
-                [System.IO.Compression.ZipFileExtensions]::ExtractToFile($file, "$env:TMP\nodejs.exe", $true)
+                [System.IO.Compression.ZipFileExtensions]::ExtractToFile($file, "nodejs.exe", $true)
                 break
             }
         }
